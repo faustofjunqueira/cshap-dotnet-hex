@@ -1,6 +1,4 @@
-<h3>Faça o teu melhor, na codição que você tem, enquanto você não tem condições melhores, para fazer melhor ainda - Mario Sergio Cortella</h3>
-
----
+> *Faça o teu melhor, na codição que você tem, enquanto você não tem condições melhores, para fazer melhor ainda* - Mario Sergio Cortella
 
 # sp-mercantil-web-api
 [DEMO] Estrutura de implementação de sistema com arquitetura hexagonal 
