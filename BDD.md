@@ -4,9 +4,11 @@ Nesse documento estão descritos, todas as regras de negócio da solução
 
 - [Requisitos Funcionais](#requisitos-funcionais)
   - [RF01 - Cadastro de uma nova feira](#rf01---cadastro-de-uma-nova-feira)
+    - [Tabela I - Dados do domínio da API do `/market` feira](#tabela-i---dados-do-domínio-da-api-do-market-feira)
     - [Cenário I Cliente cadastra uma feira com sucesso](#cenário-i-cliente-cadastra-uma-feira-com-sucesso)
     - [Cenário II Cliente que faz cadastro de nova feira com registro já existente](#cenário-ii-cliente-que-faz-cadastro-de-nova-feira-com-registro-já-existente)
     - [Cenário III Cliente faz cadastro com informação de tipo do dados diferente do permitido](#cenário-iii-cliente-faz-cadastro-com-informação-de-tipo-do-dados-diferente-do-permitido)
+    - [Cenário IV Cliente faz cadastro faltando campo](#cenário-iv-cliente-faz-cadastro-faltando-campo)
   - [RF02 - Exclusão de feiras pelo código de registro.](#rf02---exclusão-de-feiras-pelo-código-de-registro)
   - [RF03 - Alteração de feiras](#rf03---alteração-de-feiras)
   - [RF04 - Filtro de Feiras](#rf04---filtro-de-feiras)
@@ -19,7 +21,7 @@ Em uma API, para que seja possível localizar e controlar todas as feiras na cid
 
 e os dados devem ser validados, conforme a tabela abaixo.
 
-Dados do domínio da API do `/market` feira:
+### Tabela I - Dados do domínio da API do `/market` feira
 
 | Variável | Nome da variável | Descrição da variável | Fonte | Tipo | Tamanho |
 |----------|------------------|-----------------------|-------|------|---------|
@@ -154,8 +156,67 @@ Dados do domínio da API do `/market` feira:
 }
 ```
 
+### Cenário IV Cliente faz cadastro faltando campo
 
+**Dado** um cliente autenticado e autorizado com permissão de CRIAR_FEIRA
+
+**Quando** envia para a API `POST /market` com o seguinte body
+
+```json
+{
+  "id": "1",
+  "long": "-46.548146", // <- Campo com o valor impróprio
+  "lat": -23.568390,
+  "setcens": "355030885000019",
+  "areap": "3550308005040",
+  "district": "VILA FORMOSA",
+  "codsubpref": "26",
+  "subpref": "ARICANDUVA",
+  "region5": "Leste",
+  "region8": "Leste 1",
+  "name": "PRAÃA LE+O X",
+  "register": "7216-8",
+  "street": "RUA CODAJ-S",
+  "addrNumber": "45",
+  "neighborhood": "VILA FORMOSA",
+  "reference": "PRAÃA  MARECHAL LEIT+O BANDEIRA"
+}
+```
+
+**Então** a requisição deve retornar status code `400` com o seguinte body
+
+```json
+{
+  "code": "000",
+  "type": "validation",
+  "message": "coddist is mandatory"
+}
+```
 
 ## RF02 - Exclusão de feiras pelo código de registro.
+
+Como um cliente operador autorizado com a permissão EXCLUIR_FEIRA, eu gostaria de remover uma feira através de seu código de registro.
+
+Em uma API, para que seja possível manter integra e atualizado as informações  das feiras na cidades de São Paulo,
+
+
 ## RF03 - Alteração de feiras
+
+Como um cliente operador autorizado com a permissão ALTERAR_FEIRA, eu gostaria de alterar as informações de uma feira através de seu código de registro.
+
+Em uma API, para que seja possível manter integra e atualizado as informações das feiras na cidades de São Paulo. Ressalta-se que não é permitido alterar o código de registro da feira.
+
+A validação dos campos devem seguir a [Tabela I - Dados do domínio da API do `/market` feira](#tabela-i---dados-do-domínio-da-api-do-market-feira).
+
 ## RF04 - Filtro de Feiras
+
+Como um cliente operador autorizado com a permissão BUSCAR_FEIRA, eu gostaria de buscar as informações de uma feira através do filtro abaixo.
+
+| Variavel     | Tipo   | Tamanho | Descrição                                                             |
+|--------------|--------|---------|-----------------------------------------------------------------------|
+| district     | string | 18      | Nome do Distrito Municipal                                            | 
+| region5      | string | 06      | Região conforme divisão do Município em 5 áreas                       |
+| name         | string | 30      | Denominação da feira livre atribuída pela Supervisão de Abastecimento |
+| neighborhood | string | 20      | Bairro de localização da feira livre                                  |
+
+Em uma API, para que seja possível visualizar as informações das feiras na cidades de São Paulo. 
