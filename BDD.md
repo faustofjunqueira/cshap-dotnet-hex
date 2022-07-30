@@ -4,6 +4,9 @@ Nesse documento estão descritos, todas as regras de negócio da solução
 
 - [Requisitos Funcionais](#requisitos-funcionais)
   - [RF01 - Cadastro de uma nova feira](#rf01---cadastro-de-uma-nova-feira)
+    - [Cenário I Cliente cadastra uma feira com sucesso](#cenário-i-cliente-cadastra-uma-feira-com-sucesso)
+    - [Cenário II Cliente que faz cadastro de nova feira com registro já existente](#cenário-ii-cliente-que-faz-cadastro-de-nova-feira-com-registro-já-existente)
+    - [Cenário III Cliente faz cadastro com informação de tipo do dados diferente do permitido](#cenário-iii-cliente-faz-cadastro-com-informação-de-tipo-do-dados-diferente-do-permitido)
   - [RF02 - Exclusão de feiras pelo código de registro.](#rf02---exclusão-de-feiras-pelo-código-de-registro)
   - [RF03 - Alteração de feiras](#rf03---alteração-de-feiras)
   - [RF04 - Filtro de Feiras](#rf04---filtro-de-feiras)
@@ -39,7 +42,7 @@ Dados do domínio da API do `/market` feira:
 | reference | Ponto de referência | Ponto de referência da localização da feira livre | SMSP/AB | string | 24 |
 
 
-**Cenário I** Cliente cadastra uma feira com sucesso
+### Cenário I Cliente cadastra uma feira com sucesso
 
 **Dado** um cliente autenticado e autorizado com permissão de CRIAR_FEIRA
 
@@ -73,7 +76,7 @@ Dados do domínio da API do `/market` feira:
 }
 ```
 
-**Cenário II** Cliente que faz cadastro de nova feira com registro já existente
+### Cenário II Cliente que faz cadastro de nova feira com registro já existente
 
 **Dado** um cliente autenticado e autorizado com permissão de CRIAR_FEIRA
 
@@ -113,7 +116,7 @@ Dados do domínio da API do `/market` feira:
 }
 ```
 
-**Cenario III** Cliente faz cadastro com informação de tipo do dados diferente do permitido
+### Cenário III Cliente faz cadastro com informação de tipo do dados diferente do permitido
 
 **Dado** um cliente autenticado e autorizado com permissão de CRIAR_FEIRA
 
