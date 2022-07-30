@@ -1,3 +1,7 @@
+<h1>Faça o teu melhor, na codição que você tem, enquanto você não tem condições melhores, para fazer melhor ainda - Mario Sergio Cortella</h1>
+
+---
+
 # sp-mercantil-web-api
 [DEMO] Estrutura de implementação de sistema com arquitetura hexagonal 
 
