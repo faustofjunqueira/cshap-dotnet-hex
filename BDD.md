@@ -10,6 +10,8 @@ Nesse documento estão descritos, todas as regras de negócio da solução
     - [Cenário III Cliente faz cadastro com informação de tipo do dados diferente do permitido](#cenário-iii-cliente-faz-cadastro-com-informação-de-tipo-do-dados-diferente-do-permitido)
     - [Cenário IV Cliente faz cadastro faltando campo](#cenário-iv-cliente-faz-cadastro-faltando-campo)
   - [RF02 - Exclusão de feiras pelo código de registro.](#rf02---exclusão-de-feiras-pelo-código-de-registro)
+    - [Cenário V Cliente faz a exclusão da feira através do registro](#cenário-v-cliente-faz-a-exclusão-da-feira-através-do-registro)
+    - [Cenário VI Cliente faz a exclusão da feira através do registro não cadastrado na base](#cenário-vi-cliente-faz-a-exclusão-da-feira-através-do-registro-não-cadastrado-na-base)
   - [RF03 - Alteração de feiras](#rf03---alteração-de-feiras)
   - [RF04 - Filtro de Feiras](#rf04---filtro-de-feiras)
 
@@ -197,8 +199,21 @@ e os dados devem ser validados, conforme a tabela abaixo.
 
 Como um cliente operador autorizado com a permissão EXCLUIR_FEIRA, eu gostaria de remover uma feira através de seu código de registro.
 
-Em uma API, para que seja possível manter integra e atualizado as informações  das feiras na cidades de São Paulo,
+Em uma API, para que seja possível manter integra e atualizado as informações das feiras na cidades de São Paulo.
 
+### Cenário V Cliente faz a exclusão da feira através do registro
+
+**Dado** um cliente autenticado com a permissão EXCLUIR_FEIRA 
+**E** feira com registro `7216-8` cadastrada na base de dados
+**Quando** envia para a API `DELETE /market/7216-8`
+**Então** a requisição deve retornar status code `200`
+
+### Cenário VI Cliente faz a exclusão da feira através do registro não cadastrado na base
+
+**Dado** um cliente autenticado com a permissão EXCLUIR_FEIRA 
+**E** feira com registro `7216-8` **NÃO** cadastrada na base de dados
+**Quando** envia para a API `DELETE /market/7216-8`
+**Então** a requisição deve retornar status code `404`
 
 ## RF03 - Alteração de feiras
 
