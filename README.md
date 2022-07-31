@@ -43,4 +43,4 @@ A cidade de São Paulo apresenta um grande número de feiras, para tal, é neces
 
 Para executar a aplicação temos dois prismas, um demostração e desenvolvimento. A principal diferença entre eles é o docker-compose, que para desenvolvimento, instancia somente o banco de dados, enquanto para demonstração, irá instanciar o banco, popula-lo, construir a aplicação, verificar a qualidades do código, executar os testes e executar a aplicação, simulando um fluxo de CI/CD.
 
-Para efetuar a execução, siga o manual [Executando a Aplicação](./docs/IT_Executando_Aplicacao.md)
+Para efetuar a execução da aplicação, siga o manual [Executando a Aplicação](./docs/IT_Executando_Aplicacao.md). Agora para seguir a instação para executação de desenvolvimento, então vá para [Desenvolvendo com Java / Quarkus / Docker](./docs/IT_Desenvolvimento.md).
