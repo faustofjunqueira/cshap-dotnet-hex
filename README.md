@@ -37,7 +37,7 @@ Para melhor descrever os cenários de desenvolvimento e melhorar a implementaç�
 
 Então, vamos para a cenário simulado.
 
-A cidade de São Paulo apresenta um grande número de feiras, para tal, é necessário, existir um controle sobre essas feiras. Logo o sistema deve ter um CRUD para controlar essas feiras. Para visualizar todas as regras de negocio, clique [aqui](./docs/BDD.md) ou vá para o arquivo `BDD.md`.
+A cidade de São Paulo apresenta um grande número de feiras, para tal, é necessário, existir um controle sobre essas feiras. Logo o sistema deve ter um CRUD para controlar essas feiras. Para visualizar todas as regras de negocio, clique [aqui](./docs/BDD.md) ou vá para o arquivo `docs/BDD.md`.
 
 ## Execução
 
