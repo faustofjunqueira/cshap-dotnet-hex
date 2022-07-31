@@ -1,62 +1,77 @@
+> *Faça o teu melhor, na codição que você tem, enquanto você não tem condições melhores, para fazer melhor ainda* - Mario Sergio Cortella
+
 # sp-mercantil-web-api
 [DEMO] Estrutura de implementação de sistema com arquitetura hexagonal 
 
-```txt
-# code-with-quarkus Project
+- [sp-mercantil-web-api](#sp-mercantil-web-api)
+  - [Introdução](#introdução)
+    - [Quarkus](#quarkus)
+    - [Arquitetura Hexagonal](#arquitetura-hexagonal)
+  - [Demostração](#demostração)
+  - [Execução](#execução)
+  - [Tecnlogias](#tecnlogias)
+    - [Requisitos Mínimos](#requisitos-mínimos)
+    - [Banco de dados](#banco-de-dados)
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+## Introdução
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+Esse projeto é para fins acadêmicos e, tem como objetivo, apresenta uma estrutura arquitetura hexagonal utilizando o framework [Quarkus](https://quarkus.io/).
 
-## Running the application in dev mode
+### Quarkus
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
-```
+O Quarkus é, atualmente, a prova que a comunidade Java ainda continua em constante evolução frente às novas necessidades e cenários apresentados pelo mercado.
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+No site oficial da plataforma, [https://quarkus.io/](https://quarkus.io/), temos uma mostra de como ele é altamente competitivo, quando comparado com outras plataformas.
 
-## Packaging and running the application
+### Arquitetura Hexagonal
 
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+Quando vamos desenvolver qualquer software, precisamos elaborar, inicialmente uma desenho arquitetural de nossa solução, dando ênfase em cada ponto da mesma. Desde a Arquitetura de execução, Arquitetura de Componentes, mas tambem a Arquitetura de Software. 
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+A Arquitetura Hexagonal é uma proposta para voce organizar sua aplicação, quando, principalmente, podemos estar inseridos no mundo de microserviços.
 
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
+Abaixo, deixo uma referencia para um entendimento maior do modelo arquitetural.
+[https://medium.com/tableless/desvendando-a-arquitetura-hexagonal-52c56f8824c](https://medium.com/tableless/desvendando-a-arquitetura-hexagonal-52c56f8824c). Esse artigo foi escrito por Lucas Trindade, em seu blogpost no medium.
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+## Demostração
 
-## Creating a native executable
+Para facilitar a visualização do produto, é interessante apresentar um subconjunto de funcionalidades que a aplicação de demonstração deva atender.
 
-You can create a native executable using: 
-```shell script
-./mvnw package -Pnative
-```
+Para melhor descrever os cenários de desenvolvimento e melhorar a implementação dos testes de aceitação, a documentação das RFs (requisitos funcionais), eles serão elaborados seguindo a estratégia do BDD (Behavior Driven Design), para melhorar a compreensão a Dev Media preparou esse artigo: [https://www.devmedia.com.br/desenvolvimento-orientado-por-comportamento-bdd/21127](https://www.devmedia.com.br/desenvolvimento-orientado-por-comportamento-bdd/21127).
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Pnative -Dquarkus.native.container-build=true
-```
+Então, vamos para a cenário simulado.
 
-You can then execute your native executable with: `./target/code-with-quarkus-1.0.0-SNAPSHOT-runner`
+A cidade de São Paulo apresenta um grande número de feiras, para tal, é necessário, existir um controle sobre essas feiras. Logo o sistema deve ter um CRUD para controlar essas feiras. Para visualizar todas as regras de negocio, clique [aqui](./docs/BDD.md) ou vá para o arquivo `docs/BDD.md`.
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
+## Execução
 
-## Provided Code
+Para executar a aplicação temos dois prismas, um demostração e desenvolvimento. A principal diferença entre eles é o docker-compose, que para desenvolvimento, instancia somente o banco de dados, enquanto para demonstração, irá instanciar o banco, popula-lo, construir a aplicação, verificar a qualidades do código, executar os testes e executar a aplicação, simulando um fluxo de CI/CD.
 
-### RESTEasy Reactive
+Para efetuar a execução da aplicação, siga o manual [Executando a Aplicação](./docs/IT_Executando_Aplicacao.md). Agora para seguir a instação para executação de desenvolvimento, então vá para [Desenvolvendo com Java / Quarkus / Docker](./docs/IT_Desenvolvimento.md).
 
-Easily start your Reactive RESTful Web Services
 
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+## Tecnlogias
 
-```
+As tecnologias adotadas para a execução dessa aplicação foram:
+
+- Java: Para o desenvolvimento da aplicação;
+- Quarkus: Framework de desenvolvimento de aplicações web, orientado à containers;
+- Docker: Para criação do ambiente de execução;
+- Docker Compose: Para orquestração das aplicações;
+- Node JS: Para desenvolvimento da aplicação de importação.
+
+### Requisitos Mínimos
+
+O sistema o foi desenvolvido em Windows, porem, com o advento do docker, não se limita à esse sistema.
+Logo:
+
+- **Docker** `>=20.10.8`
+- **Docker Compose**  `1.29.2`
+- **Java** `>=11.0.12` - *Para desenvolvimento*
+- **Maven** `>=3.8.4` - *Para desenvolvimento*
+
+
+### Banco de dados
+
+A aplicação utiliza o banco de MySQL na versao `8.0.30`.
+
+Escolha dessa distribuição é em função de ser difundida pelo mundo, e ter compatibilidade com o Keycloak.
