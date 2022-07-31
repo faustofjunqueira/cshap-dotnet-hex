@@ -63,7 +63,7 @@ As tecnologias adotadas para a execução dessa aplicação foram:
 O sistema o foi desenvolvido em Windows, porem, com o advento do docker, não se limita à esse sistema.
 Logo:
 
-- Docker `>=20.10.8`
-- Docker Compose  `1.29.2`
-- Java `>=11.0.12` - *Para desenvolvimento*
-- Maven `>=3.8.4` - *Para desenvolvimento*
+- **Docker** `>=20.10.8`
+- **Docker Compose**  `1.29.2`
+- **Java** `>=11.0.12` - *Para desenvolvimento*
+- **Maven** `>=3.8.4` - *Para desenvolvimento*
