@@ -9,6 +9,8 @@
     - [Arquitetura Hexagonal](#arquitetura-hexagonal)
   - [Demostração](#demostração)
   - [Execução](#execução)
+  - [Tecnlogias](#tecnlogias)
+    - [Requisitos Mínimos](#requisitos-mínimos)
 
 ## Introdução
 
@@ -44,3 +46,24 @@ A cidade de São Paulo apresenta um grande número de feiras, para tal, é neces
 Para executar a aplicação temos dois prismas, um demostração e desenvolvimento. A principal diferença entre eles é o docker-compose, que para desenvolvimento, instancia somente o banco de dados, enquanto para demonstração, irá instanciar o banco, popula-lo, construir a aplicação, verificar a qualidades do código, executar os testes e executar a aplicação, simulando um fluxo de CI/CD.
 
 Para efetuar a execução da aplicação, siga o manual [Executando a Aplicação](./docs/IT_Executando_Aplicacao.md). Agora para seguir a instação para executação de desenvolvimento, então vá para [Desenvolvendo com Java / Quarkus / Docker](./docs/IT_Desenvolvimento.md).
+
+
+## Tecnlogias
+
+As tecnologias adotadas para a execução dessa aplicação foram:
+
+- Java: Para o desenvolvimento da aplicação;
+- Quarkus: Framework de desenvolvimento de aplicações web, orientado à containers;
+- Docker: Para criação do ambiente de execução;
+- Docker Compose: Para orquestração das aplicações;
+- Node JS: Para desenvolvimento da aplicação de importação.
+
+### Requisitos Mínimos
+
+O sistema o foi desenvolvido em Windows, porem, com o advento do docker, não se limita à esse sistema.
+Logo:
+
+- Docker `>=20.10.8`
+- Docker Compose  `1.29.2`
+- Java `>=11.0.12` - *Para desenvolvimento*
+- Maven `>=3.8.4` - *Para desenvolvimento*
