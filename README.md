@@ -7,7 +7,8 @@
   - [Introdução](#introdução)
     - [Quarkus](#quarkus)
     - [Arquitetura Hexagonal](#arquitetura-hexagonal)
-  - [Sobre a demostração](#sobre-a-demostração)
+  - [Demostração](#demostração)
+  - [Execução](#execução)
 
 ## Introdução
 
@@ -28,7 +29,7 @@ A Arquitetura Hexagonal é uma proposta para voce organizar sua aplicação, qua
 Abaixo, deixo uma referencia para um entendimento maior do modelo arquitetural.
 [https://medium.com/tableless/desvendando-a-arquitetura-hexagonal-52c56f8824c](https://medium.com/tableless/desvendando-a-arquitetura-hexagonal-52c56f8824c). Esse artigo foi escrito por Lucas Trindade, em seu blogpost no medium.
 
-## Sobre a demostração
+## Demostração
 
 Para facilitar a visualização do produto, é interessante apresentar um subconjunto de funcionalidades que a aplicação de demonstração deva atender.
 
@@ -36,6 +37,10 @@ Para melhor descrever os cenários de desenvolvimento e melhorar a implementaç�
 
 Então, vamos para a cenário simulado.
 
-A cidade de São Paulo apresenta um grande número de feiras, para tal, é necessário, existir um controle sobre essas feiras. Logo o sistema deve ter um CRUD para controlar essas feiras. Para visualizar todas as regras de negocio, clique [aqui](./BDD.md) ou vá para o arquivo `BDD.md`.
+A cidade de São Paulo apresenta um grande número de feiras, para tal, é necessário, existir um controle sobre essas feiras. Logo o sistema deve ter um CRUD para controlar essas feiras. Para visualizar todas as regras de negocio, clique [aqui](./docs/BDD.md) ou vá para o arquivo `BDD.md`.
 
+## Execução
 
+Para executar a aplicação temos dois prismas, um demostração e desenvolvimento. A principal diferença entre eles é o docker-compose, que para desenvolvimento, instancia somente o banco de dados, enquanto para demonstração, irá instanciar o banco, popula-lo, construir a aplicação, verificar a qualidades do código, executar os testes e executar a aplicação, simulando um fluxo de CI/CD.
+
+Para efetuar a execução, siga o manual [Executando a Aplicação](./docs/IT_Executando_Aplicacao.md)
