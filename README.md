@@ -11,6 +11,7 @@
   - [Execução](#execução)
   - [Tecnlogias](#tecnlogias)
     - [Requisitos Mínimos](#requisitos-mínimos)
+    - [Banco de dados](#banco-de-dados)
 
 ## Introdução
 
@@ -67,3 +68,10 @@ Logo:
 - **Docker Compose**  `1.29.2`
 - **Java** `>=11.0.12` - *Para desenvolvimento*
 - **Maven** `>=3.8.4` - *Para desenvolvimento*
+
+
+### Banco de dados
+
+A aplicação utiliza o banco de MySQL na versao `8.0.30`.
+
+Escolha dessa distribuição é em função de ser difundida pelo mundo, e ter compatibilidade com o Keycloak.
