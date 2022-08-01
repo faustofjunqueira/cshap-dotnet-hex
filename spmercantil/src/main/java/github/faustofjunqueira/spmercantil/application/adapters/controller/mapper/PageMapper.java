@@ -17,5 +17,5 @@ public interface PageMapper<TModel, TResponse> {
      * @param page dado da pagina carregado do dominio
      * @return pagina a ser enviado no response
      */
-    PageResponse<TResponse> toResponse(Page<TModel> page);
+    PageResponse<TResponse> toPage(Page<TModel> page);
 }
