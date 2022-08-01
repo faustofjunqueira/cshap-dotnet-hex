@@ -35,8 +35,8 @@ e os dados devem ser validados, conforme a tabela abaixo.
 | Variável     | Nome da variável                                | Descrição da variável                                                                | Fonte       | Tipo   | Tamanho |
 | ------------ | ----------------------------------------------- | ------------------------------------------------------------------------------------ | ----------- | ------ | ------- |
 | id           | Identificador                                   | Número de identificação do estabelecimento georreferenciado por SMDU/Deinfo          | SMDU/Deinfo | string | 08      |
-| long         | Longitude                                       | Longitude da localização do estabelecimento no território do Município, conforme MDC | SMDU/Deinfo | double | n/a     |
-| lat          | Latitude                                        | Latitude da localização do estabelecimento no território do Município, conforme MDC  | SMDU/Deinfo | double | n/a     |
+| longitude         | Longitude                                       | Longitude da localização do estabelecimento no território do Município, conforme MDC | SMDU/Deinfo | double | n/a     |
+| latitude          | Latitude                                        | Latitude da localização do estabelecimento no território do Município, conforme MDC  | SMDU/Deinfo | double | n/a     |
 | setcens      | Setor censitário                                | Setor censitário conforme IBGE                                                       | IBGE        | string | 15      |
 | areap        | Área de ponderação                              | Área de ponderação (agrupamento de setores censitários) conforme IBGE 2010           | IBGE        | string | 13      |
 | coddist      | Código do distrito conforme IBGE                | Código do Distrito Municipal conforme IBGE                                           | IBGE        | string | 09      |
@@ -61,8 +61,8 @@ e os dados devem ser validados, conforme a tabela abaixo.
 ```json
 {
   "id": "1",
-  "long": -46.548146,
-  "lat": -23.568390,
+  "longitude": -46.548146,
+  "latitude": -23.568390,
   "setcens": "355030885000019",
   "areap": "3550308005040",
   "coddist": "87",
@@ -97,8 +97,8 @@ e os dados devem ser validados, conforme a tabela abaixo.
 ```json
 {
   "id": "1",
-  "long": -46.548146,
-  "lat": -23.568390,
+  "longitude": -46.548146,
+  "latitude": -23.568390,
   "setcens": "355030885000019",
   "areap": "3550308005040",
   "coddist": "87",
@@ -135,8 +135,8 @@ e os dados devem ser validados, conforme a tabela abaixo.
 ```json
 {
   "id": "1",
-  "long": "-46.548146", // <- Campo com o valor impróprio
-  "lat": -23.568390,
+  "longitude": "-46.548146", // <- Campo com o valor impróprio
+  "latitude": -23.568390,
   "setcens": "355030885000019",
   "areap": "3550308005040",
   "coddist": "87",
@@ -173,8 +173,8 @@ e os dados devem ser validados, conforme a tabela abaixo.
 ```json
 {
   "id": "1",
-  "long": "-46.548146", // <- Campo com o valor impróprio
-  "lat": -23.568390,
+  "longitude": "-46.548146", // <- Campo com o valor impróprio
+  "latitude": -23.568390,
   "setcens": "355030885000019",
   "areap": "3550308005040",
   "district": "VILA FORMOSA",
@@ -249,8 +249,8 @@ O único campo que não pode ser alterado é o campo de `register`.
 ```json
 {
   "id": "1",
-  "long": -46.548146,
-  "lat": -23.568390,
+  "longitude": -46.548146,
+  "latitude": -23.568390,
   "setcens": "355030885000019",
   "areap": "3550308005040",
   "coddist": "87",
@@ -292,7 +292,7 @@ O único campo que não pode ser alterado é o campo de `register`.
 
 ```json
 {
-  "long": "-46.548146", // <- Campo com o valor impróprio
+  "longitude": "-46.548146", // <- Campo com o valor impróprio
 }
 ```
 
@@ -324,8 +324,8 @@ O único campo que não pode ser alterado é o campo de `register`.
 ```json
 {
   "id": "1",
-  "long": -46.548146,
-  "lat": -23.568390,
+  "longitude": -46.548146,
+  "latitude": -23.568390,
   "setcens": "355030885000019",
   "areap": "3550308005040",
   "district": "VILA FORMOSA",
@@ -386,8 +386,8 @@ A Api deve retornar o resultado em formato paginado, com no máximo 10 elementos
     "nextPage": "/market?neighborhood=VILA FORMOSA&offset=10&size=10",
     "data": [ {
         "id": "1",
-        "long": -46.548146,
-        "lat": -23.568390,
+        "longitude": -46.548146,
+        "latitude": -23.568390,
         "setcens": "355030885000019",
         "areap": "3550308005040",
         "district": "VILA FORMOSA",
