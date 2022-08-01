@@ -11,9 +11,10 @@
   - [Execução](#execução)
   - [Tecnlogias](#tecnlogias)
     - [Requisitos Mínimos](#requisitos-mínimos)
-    - [Banco de dados](#banco-de-dados)
-      - [Databases](#databases)
-      - [Usuários e Acesso](#usuários-e-acesso)
+  - [Banco de dados](#banco-de-dados)
+    - [Databases](#databases)
+    - [Usuários e Acesso](#usuários-e-acesso)
+    - [Acessando o banco de dados](#acessando-o-banco-de-dados)
 
 ## Introdução
 
@@ -71,8 +72,7 @@ Logo:
 - **Java** `>=11.0.12` - *Para desenvolvimento*
 - **Maven** `>=3.8.4` - *Para desenvolvimento*
 
-
-### Banco de dados
+## Banco de dados
 
 A aplicação utiliza o banco de MySQL na versao `8.0.30`.
 
@@ -80,11 +80,11 @@ Escolha dessa distribuição é em função de ser difundida pelo mundo, e ter c
 
 A configuração do mysql, pode ser encontrada no [docker-compose.yaml](./docker-compose.yaml) e no arquivo [application.sql](db/application.sql).
 
-#### Databases
+### Databases
 
 O sistema conta com 2 databases: SP_MERCANTIL e KEYCLOAK. O SP_MERCANTIL é o utilizado pela aplicação, já o KEYCLOAK, usado pelo próprio keycloak.
 
-#### Usuários e Acesso
+### Usuários e Acesso
 
 Para esse exemplo, foram criado 3 usuários, fora o de root do `mysql`. 
 
@@ -93,3 +93,19 @@ Para esse exemplo, foram criado 3 usuários, fora o de root do `mysql`.
 | sp_mercantil_app | SP_MERCANTIL | Usado pela aplicação para executar tarefas na Aplicação    |
 | sp_mercantil_sel | SP_MERCANTIL | Usado desenvolvedores acessar a base de dados da aplicação |
 | keycloak_app     | KEYCLOAK     | Usado pelo aplicação do Keycloak                           |
+
+### Acessando o banco de dados
+
+Para acessar o banco de dados, é necessário aguardar o docker-compose terminanr a sua inicialização e acesso o endereço
+
+```txt
+http://localhost:8081
+
+host: db
+usuario: sp_mercantil_sel
+senha: UaSHtSUntirEftENUREofuzAR
+base de dados: SP_MERCANTIL
+```
+
+Você acessará o banco de dados através do Adminer.
+
