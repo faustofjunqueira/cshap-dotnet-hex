@@ -7,7 +7,7 @@ import github.faustofjunqueira.spmercantil.core.dto.Page;
 import github.faustofjunqueira.spmercantil.core.dto.UpdateMarketDto;
 import github.faustofjunqueira.spmercantil.core.exception.RegisterAlreadyExistsException;
 import github.faustofjunqueira.spmercantil.core.exception.RegisterNotFoundException;
-import github.faustofjunqueira.spmercantil.core.port.MarketCrud;
+import github.faustofjunqueira.spmercantil.core.port.MarketCrudService;
 import github.faustofjunqueira.spmercantil.core.repository.MarketRepository;
 import io.smallrye.common.constraint.NotNull;
 
@@ -17,14 +17,14 @@ import io.smallrye.common.constraint.NotNull;
  * @author Fausto Junqueira
  * @since 31/07/2022
  */
-public class MarketCrudService implements MarketCrud {
+public class MarketCrudServiceImpl implements MarketCrudService {
 
     /**
      * Instancia o MarketCrudService
      *
      * @param marketRepository MarketRepository repositório de acesso à base de dados de feira
      */
-    public MarketCrudService(MarketRepository marketRepository) {
+    public MarketCrudServiceImpl(MarketRepository marketRepository) {
         this.marketRepository = marketRepository;
     }
 

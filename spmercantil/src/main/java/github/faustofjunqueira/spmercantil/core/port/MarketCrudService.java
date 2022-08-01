@@ -14,7 +14,7 @@ import github.faustofjunqueira.spmercantil.core.exception.RegisterNotFoundExcept
  * @author Fausto Junqueira
  * @since 01/08/2022
  */
-public interface MarketCrud {
+public interface MarketCrudService {
 
     /**
      * Cria uma nova feira na base de dados
