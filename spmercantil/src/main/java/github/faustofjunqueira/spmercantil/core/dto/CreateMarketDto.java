@@ -1,13 +1,15 @@
-package github.faustofjunqueira.spmercantil.core.domain;
+package github.faustofjunqueira.spmercantil.core.dto;
 
 import lombok.Data;
 
 /**
- * Representa as informações de uma Feira(Market)
- * @since 31/07/2022
+ * Informações para criação de um market
+ *
+ * @author Fausto Junqueira
+ * @since 01/08/2022
  */
 @Data
-public class Market {
+public class CreateMarketDto {
 
     /**
      * Número de identificação do estabelecimento georreferenciado por SMDU/Deinfo
@@ -93,6 +95,4 @@ public class Market {
      * Ponto de referência da localização da feira livre
      */
     private String reference;
-
-
 }

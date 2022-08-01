@@ -362,6 +362,7 @@ A Api deve retornar o resultado em formato paginado, com no máximo 10 elementos
 **Dado** um cliente autenticado e autorizado com permissão de CONSULTAR_FEIRA
 
 **Quando** envia para a API `GET /market`
+
 **Então** a requisição deve retornar status code `400` com o seguinte body
 
 ```json
