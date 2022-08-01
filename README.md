@@ -12,6 +12,8 @@
   - [Tecnlogias](#tecnlogias)
     - [Requisitos Mínimos](#requisitos-mínimos)
     - [Banco de dados](#banco-de-dados)
+      - [Databases](#databases)
+      - [Usuários e Acesso](#usuários-e-acesso)
 
 ## Introdução
 
@@ -75,3 +77,19 @@ Logo:
 A aplicação utiliza o banco de MySQL na versao `8.0.30`.
 
 Escolha dessa distribuição é em função de ser difundida pelo mundo, e ter compatibilidade com o Keycloak.
+
+A configuração do mysql, pode ser encontrada no [docker-compose.yaml](./docker-compose.yaml) e no arquivo [application.sql](db/application.sql).
+
+#### Databases
+
+O sistema conta com 2 databases: SP_MERCANTIL e KEYCLOAK. O SP_MERCANTIL é o utilizado pela aplicação, já o KEYCLOAK, usado pelo próprio keycloak.
+
+#### Usuários e Acesso
+
+Para esse exemplo, foram criado 3 usuários, fora o de root do `mysql`. 
+
+| Usuário          | Database     | Propósito                                                  |
+|------------------|--------------|------------------------------------------------------------|
+| sp_mercantil_app | SP_MERCANTIL | Usado pela aplicação para executar tarefas na Aplicação    |
+| sp_mercantil_sel | SP_MERCANTIL | Usado desenvolvedores acessar a base de dados da aplicação |
+| keycloak_app     | KEYCLOAK     | Usado pelo aplicação do Keycloak                           |
