@@ -67,7 +67,7 @@ public class MarketCrudServiceImpl implements MarketCrudService {
      * Busca registros do banco de dados
      *
      * @param filterMarketDto FilterMarketDto filtra os registros da base de dados
-     * @return Page<Market>
+     * @return Retorna a pagina carregada
      */
     public Page<Market> filter(FilterMarketDto filterMarketDto) {
         return marketRepository.filter(filterMarketDto);

@@ -44,7 +44,7 @@ public interface MarketCrudService {
     /**
      * Busca registros do banco de dados
      * @param filterMarketDto FilterMarketDto filtra os registros da base de dados
-     * @return Page<Market>
+     * @return Retorna a pagina carregada
      */
     Page<Market> filter(FilterMarketDto filterMarketDto);
 }

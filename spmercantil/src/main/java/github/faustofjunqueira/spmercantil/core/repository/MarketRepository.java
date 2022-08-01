@@ -45,7 +45,7 @@ public interface MarketRepository {
      * Busca registros do banco de dados
      *
      * @param filterMarketDto FilterMarketDto filtra os registros da base de dados
-     * @return Page<Market>
+     * @return Retorna da pagina carregada de mercados
      */
     Page<Market> filter(FilterMarketDto filterMarketDto);
 }

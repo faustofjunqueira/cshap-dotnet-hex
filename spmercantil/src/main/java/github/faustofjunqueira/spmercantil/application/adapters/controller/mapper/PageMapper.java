@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 /**
- * Mapper da entidade Page <-> PageResponse
+ * Mapper da entidade Page - PageResponse
  * @param <TModel> Tipo de dado da entidade do dominio
  * @param <TResponse> tipo de dado da entidade do response
  */
