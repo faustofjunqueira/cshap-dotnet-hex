@@ -7,6 +7,8 @@ services:
     restart: always
     environment:
       -  MYSQL_ROOT_PASSWORD=my-secret-pw
+    volumes:
+      - "./volumes/mysql-data:/var/lib/mysql"
 
   # Solução de acesso à base de dados
   # Para acessar, utilize o usuário e senha disponibilizado através do endereço http://localhost:8081
