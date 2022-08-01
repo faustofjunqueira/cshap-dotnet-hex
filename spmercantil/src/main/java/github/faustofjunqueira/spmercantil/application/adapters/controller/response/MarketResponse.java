@@ -1,5 +1,7 @@
 package github.faustofjunqueira.spmercantil.application.adapters.controller.response;
 
+import github.faustofjunqueira.spmercantil.application.adapters.controller.mapper.PageMapper;
+import github.faustofjunqueira.spmercantil.core.domain.Market;
 import lombok.Data;
 
 /**

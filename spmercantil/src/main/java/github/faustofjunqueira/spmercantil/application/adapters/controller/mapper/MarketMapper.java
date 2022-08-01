@@ -9,7 +9,7 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
  * Conversão da entidade Market
  */
 @Mapper(componentModel = "cdi", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-public interface MarketMapper {
+public interface MarketMapper extends PageMapper<Market, MarketResponse> {
 
     /**
      * Converte o objeto de dominio Market em Response

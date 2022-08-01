@@ -7,15 +7,15 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 
 /**
  * Mapper da entidade Page <-> PageResponse
- * @param <TData> Tipo de dado da lista dentro da pagina
+ * @param <TModel> Tipo de dado da entidade do dominio
+ * @param <TResponse> tipo de dado da entidade do response
  */
-@Mapper(componentModel = "cdi", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-public interface PageMapper<TData> {
+public interface PageMapper<TModel, TResponse> {
 
     /**
      * Conversao de Page para response
      * @param page dado da pagina carregado do dominio
      * @return pagina a ser enviado no response
      */
-    PageResponse<TData> toResponse(Page<TData> page);
+    PageResponse<TResponse> toResponse(Page<TModel> page);
 }
