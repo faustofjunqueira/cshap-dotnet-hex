@@ -1,5 +1,6 @@
 package github.faustofjunqueira.spmercantil.application.adapters.controller.request;
 
+import io.vertx.core.cli.annotations.Description;
 import lombok.Data;
 
 import javax.validation.constraints.Size;
