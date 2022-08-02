@@ -12,7 +12,7 @@ import github.faustofjunqueira.spmercantil.core.repository.MarketRepository;
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class MarketRepositoryPanache implements MarketRepository {
+public class MarketRepositoryImpl implements MarketRepository {
     @Override
     public Market create(CreateMarketDto createMarketDto) throws RegisterAlreadyExistsException {
         return null;

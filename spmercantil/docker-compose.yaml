@@ -10,6 +10,8 @@ services:
       - MYSQL_DATABASE=SP_MERCANTIL
       - MYSQL_USER=sp_mercantil_us
       - MYSQL_PASSWORD=minhasenha
+    ports:
+      - 3306:3306
     volumes:
       - "./volumes/mysql-data:/var/lib/mysql"
 
