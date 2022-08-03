@@ -9,6 +9,17 @@ A aplicação foi construído sobre os pilares do Quarkus.
 - **Java** `>=11.0.12` - *Para desenvolvimento*
 - **Maven** `>=3.8.4` - *Para desenvolvimento*
 
+## Estrutura de pastas do projeto
+
+```txt
+
+./db          - Arquivos de inicialização do banco de dados
+./docs        - Documentação do sofware
+./import-data - Aplicação de importação
+./spmercantil - Aplicação Web
+./volumes     - Volumes criado pelo docker compose
+```
+
 
 ## Iniciando o ambiente
 
