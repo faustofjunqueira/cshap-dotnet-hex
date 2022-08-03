@@ -1,4 +1,4 @@
-package github.faustofjunqueira.spmercantil;
+package github.faustofjunqueira.spmercantil.application.adapters.controller;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
