@@ -12,12 +12,12 @@ A aplicação foi construído sobre os pilares do Quarkus.
 ## Estrutura de pastas do projeto
 
 ```txt
-
-./db          - Arquivos de inicialização do banco de dados
-./docs        - Documentação do sofware
-./import-data - Aplicação de importação
-./spmercantil - Aplicação Web
-./volumes     - Volumes criado pelo docker compose
+./docs            - Documentação do sofware
+./import-data     - Aplicação de importação
+./spmercantil     - Aplicação Web
+./volumes         - Volumes criado pelo docker compose
+/.volumes/db      - Arquivos de inicialização do banco de dados
+/.volumes/import  - Arquivos CSV que serão importados para a base
 ```
 
 
