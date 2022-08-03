@@ -13,6 +13,7 @@ import github.faustofjunqueira.spmercantil.core.dto.UpdateMarketDto;
 import github.faustofjunqueira.spmercantil.core.exception.RegisterAlreadyExistsException;
 import github.faustofjunqueira.spmercantil.core.exception.RegisterNotFoundException;
 import github.faustofjunqueira.spmercantil.core.port.MarketCrudService;
+import io.netty.handler.codec.http.HttpStatusClass;
 import lombok.RequiredArgsConstructor;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
@@ -40,15 +41,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MarketController {
 
-    // TODO Validação
-    // TODO Model Mapper
-    // TODO Swagger
-    // TODO OpenApi - Documentação
-    // TODO Java Doc
-    // TODO Teste Unitário
-    // TODO Logs
-    // TODO Rever os responses em json para validations e exceptions
-
     private final MarketMapper mapper;
 
     private final MarketCrudService crudService;
@@ -72,6 +64,7 @@ public class MarketController {
             responseCode = "200",
             description = "Resultado Filtrado de feira"
     )
+    @ResponseStatus(200)
     public PageResponse<MarketResponse> filter(@QueryParam("district") String district,
                                                @QueryParam("region5") String region5,
                                                @QueryParam("name") String name,
