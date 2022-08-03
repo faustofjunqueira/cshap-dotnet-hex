@@ -1,5 +1,6 @@
 package github.faustofjunqueira.spmercantil.application.adapters.repository.entity;
 
+import github.faustofjunqueira.spmercantil.core.exception.RegisterNotFoundException;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import lombok.Data;
@@ -159,9 +160,14 @@ public class MarketEntity extends PanacheEntityBase {
      * Busca uma feira por numero de registro
      * @param register String registro da feira
      * @return Feira encontrada baseado no registro
+     * @throws RegisterNotFoundException Caso não encontre o registro solicitado
      */
-    public static MarketEntity findByRegister(String register){
-        return find("register", register).firstResult();
+    public static MarketEntity findByRegister(String register) throws RegisterNotFoundException{
+        MarketEntity marketEntity = find("register", register).firstResult();
+        if(marketEntity == null) {
+            throw new RegisterNotFoundException("Register "+register+" not found");
+        }
+        return marketEntity;
     }
 
 }

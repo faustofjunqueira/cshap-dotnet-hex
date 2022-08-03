@@ -15,27 +15,27 @@ public class FilterMarketDto {
      * @param region5 String Região conforme divisão do Município em 5 áreas
      * @param name String Denominação da feira livre atribuída pela Supervisão de Abastecimento
      * @param neighborhood String Bairro de localização da feira livre
-     * @param offset Deslocamento entre o registro inicial e o primeiro registro da pagina
-     * @param size Quantidade de registro na pagina
+     * @param page Integer numero da pagina
+     * @param size Integer Quantidade de registro na pagina
      */
-    public FilterMarketDto(String district, String region5, String name, String neighborhood, Long offset, Long size) {
+    public FilterMarketDto(String district, String region5, String name, String neighborhood, Integer page, Integer size) {
         this.district = district;
         this.region5 = region5;
         this.name = name;
         this.neighborhood = neighborhood;
-        this.offset = offset;
+        this.page = page;
         this.size = size;
     }
 
     /**
-     * Deslocamento entre o registro inicial e o inicio do pagina
+     * Numero da pagina
      */
-    private Long offset;
+    private Integer page;
 
     /**
      * Tamanho da pagina
      */
-    private Long size;
+    private Integer size;
 
     /**
      * Nome do Distrito Municipal

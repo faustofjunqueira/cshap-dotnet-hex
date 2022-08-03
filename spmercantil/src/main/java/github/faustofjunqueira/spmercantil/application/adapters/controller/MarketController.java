@@ -20,7 +20,6 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.jboss.resteasy.reactive.ResponseStatus;
 
 import javax.validation.Valid;
-import javax.validation.Validator;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import javax.ws.rs.*;
@@ -53,11 +52,8 @@ public class MarketController {
 
     private final MarketCrudService crudService;
 
-    @ConfigProperty(name = "app.pagination.offset-default", defaultValue = "10")
-    private Long OFFSET_DEFAULT;
-
-    @ConfigProperty(name = "app.pagination.offset-default", defaultValue = "10")
-    private Long SIZE_DEFAULT;
+    private Integer SIZE_DEFAULT = 25;
+    private final Integer PAGE_DEFAULT = 1;
 
     /**
      * Realiza a função de filtro da aplicação
@@ -66,7 +62,7 @@ public class MarketController {
      * @param region5      String Região conforme divisão do Município em 5 áreas
      * @param name         String Denominação da feira livre atribuída pela Supervisão de Abastecimento
      * @param neighborhood String Bairro de localização da feira livre
-     * @param offset       Deslocamento entre o registro inicial e o primeiro registro da pagina
+     * @param page         Deslocamento entre o registro inicial e o primeiro registro da pagina
      * @param size         Quantidade de registro na pagina
      * @return Resultado paginado de feira
      */
@@ -79,12 +75,12 @@ public class MarketController {
                                                @QueryParam("region5") String region5,
                                                @QueryParam("name") String name,
                                                @QueryParam("neighborhood") String neighborhood,
-                                               @QueryParam("offset") Optional<Long> offset,
-                                               @QueryParam("size") Optional<Long> size
+                                               @QueryParam("page") Optional<Integer> page,
+                                               @QueryParam("size") Optional<Integer> size
     ) {
-        FilterMarketDto filter = new FilterMarketDto(district, region5, name, neighborhood, offset.orElse(OFFSET_DEFAULT), size.orElse(SIZE_DEFAULT));
-        Page<Market> page = crudService.filter(filter);
-        return mapper.toPage(page);
+        FilterMarketDto filter = new FilterMarketDto(district, region5, name, neighborhood, page.orElse(PAGE_DEFAULT), size.orElse(SIZE_DEFAULT));
+        Page<Market> paging = crudService.filter(filter);
+        return mapper.toPage(paging);
     }
 
     @POST

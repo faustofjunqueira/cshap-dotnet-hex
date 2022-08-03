@@ -12,7 +12,7 @@ public class Page<TData> {
     /**
      * total de registro presentes na base de dados
      */
-    private Integer total;
+    private Long total;
 
     /**
      *  lista registro da pagina
@@ -21,10 +21,10 @@ public class Page<TData> {
 
     /**
      * Instancia uma pagina de registros
-     * @param total total de registro presentes na base de dados
-     * @param data lista registro da pagina
+     * @param total Long total de registro presentes na base de dados
+     * @param data TData lista registro da pagina
      */
-    public Page(Integer total, List<TData> data) {
+    public Page(Long total, List<TData> data) {
         this.total = total;
         this.data = data;
     }

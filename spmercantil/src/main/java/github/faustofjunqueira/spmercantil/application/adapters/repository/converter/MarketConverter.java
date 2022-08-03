@@ -28,7 +28,7 @@ public class MarketConverter {
      * @param updateMarketDto UpdateMarketDto informações para atualizar o marketEntity
      * @param marketEntity MarketEntity entidade market carregada da base de dados
      */
-    public void updateMarketEntity(UpdateMarketDto updateMarketDto, MarketEntity marketEntity) {
+    public void fromUpdateDto(UpdateMarketDto updateMarketDto, MarketEntity marketEntity) {
         applyMarketValues(marketEntity, updateMarketDto);
     }
 

@@ -5,6 +5,8 @@ import github.faustofjunqueira.spmercantil.core.domain.Market;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
+import java.util.List;
+
 /**
  * Mapper de todos as entity em domain
  */
@@ -18,4 +20,10 @@ public interface RepositoryMapper {
      */
     Market toMarket(MarketEntity entity);
 
+    /**
+     * Converte de MarketEntity para Market em lista
+     * @param marketEntityList
+     * @return
+     */
+    List<Market> toMarketList(List<MarketEntity> marketEntityList);
 }

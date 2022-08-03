@@ -1,5 +1,6 @@
 package github.faustofjunqueira.spmercantil.application.adapters.controller.response;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,12 +8,12 @@ import java.util.List;
  *
  * @param <TData> Tipo do registro carregado
  */
-public class PageResponse<TData> {
+public class PageResponse<TData> implements Serializable {
 
     /**
      * total de registro presentes na base de dados
      */
-    private Integer total;
+    private Long total;
 
     /**
      *  lista registro da pagina
@@ -24,7 +25,7 @@ public class PageResponse<TData> {
      * @param total total de registro presentes na base de dados
      * @param data lista registro da pagina
      */
-    public PageResponse(Integer total, List<TData> data) {
+    public PageResponse(Long total, List<TData> data) {
         this.total = total;
         this.data = data;
     }
