@@ -35,8 +35,6 @@ services:
       - db
     ports:
       - 8080:8080
-    volumes:
-      - "./volumes/artefacts:/artefacts"
     environment:
       - DB_USERNAME=sp_mercantil_app
       - DB_PASSWORD=laNtatEPIlentAtRUCKOdi

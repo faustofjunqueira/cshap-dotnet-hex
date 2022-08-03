@@ -3,6 +3,8 @@
 # sp-mercantil-web-api
 [DEMO] Estrutura de implementação de sistema com arquitetura hexagonal 
 
+Para ir diretamente para o material de suporte à avaliação e uso, veja o documento [Executando a Aplicação](docs/IT_Executando_Aplicacao.md)
+
 - [sp-mercantil-web-api](#sp-mercantil-web-api)
   - [Introdução](#introdução)
     - [Quarkus](#quarkus)
