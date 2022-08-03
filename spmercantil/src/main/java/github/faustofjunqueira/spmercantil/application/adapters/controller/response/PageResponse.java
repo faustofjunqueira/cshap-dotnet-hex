@@ -1,5 +1,7 @@
 package github.faustofjunqueira.spmercantil.application.adapters.controller.response;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -8,7 +10,8 @@ import java.util.List;
  *
  * @param <TData> Tipo do registro carregado
  */
-public class PageResponse<TData> implements Serializable {
+@Data
+public class PageResponse<TData> {
 
     /**
      * total de registro presentes na base de dados

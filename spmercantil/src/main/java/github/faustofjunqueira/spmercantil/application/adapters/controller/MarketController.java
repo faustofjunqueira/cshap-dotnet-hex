@@ -18,6 +18,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.jboss.resteasy.reactive.ResponseStatus;
+import org.jboss.resteasy.reactive.RestResponse;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -108,9 +109,10 @@ public class MarketController {
     }
 
     @DELETE
+    @ResponseStatus(RestResponse.StatusCode.NO_CONTENT)
     @Path("{register}")
     @APIResponse(
-            responseCode = "200",
+            responseCode = "204",
             description = "Feira removida"
     )
     public void delete(@PathParam("register") @NotBlank @Size(max = 6) String register) throws RegisterNotFoundException {

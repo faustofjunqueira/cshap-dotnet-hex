@@ -1,5 +1,9 @@
 package github.faustofjunqueira.spmercantil.core.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 
 /**
@@ -7,6 +11,8 @@ import java.util.List;
  *
  * @param <TData> Tipo do registro carregado
  */
+@Data
+@AllArgsConstructor
 public class Page<TData> {
 
     /**
@@ -19,13 +25,4 @@ public class Page<TData> {
      */
     private List<TData> data;
 
-    /**
-     * Instancia uma pagina de registros
-     * @param total Long total de registro presentes na base de dados
-     * @param data TData lista registro da pagina
-     */
-    public Page(Long total, List<TData> data) {
-        this.total = total;
-        this.data = data;
-    }
 }
