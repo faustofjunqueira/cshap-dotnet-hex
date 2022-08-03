@@ -50,10 +50,12 @@ public class MarketController {
     // TODO Rever os responses em json para validations e exceptions
 
     private final MarketMapper mapper;
+
     private final MarketCrudService crudService;
-    private final Validator validator;
+
     @ConfigProperty(name = "app.pagination.offset-default", defaultValue = "10")
     private Long OFFSET_DEFAULT;
+
     @ConfigProperty(name = "app.pagination.offset-default", defaultValue = "10")
     private Long SIZE_DEFAULT;
 

@@ -5,11 +5,9 @@ import github.faustofjunqueira.spmercantil.application.adapters.controller.reque
 import github.faustofjunqueira.spmercantil.application.adapters.controller.response.MarketResponse;
 import github.faustofjunqueira.spmercantil.core.domain.Market;
 import github.faustofjunqueira.spmercantil.core.dto.CreateMarketDto;
-import github.faustofjunqueira.spmercantil.core.dto.FilterMarketDto;
 import github.faustofjunqueira.spmercantil.core.dto.UpdateMarketDto;
+import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 /**
@@ -20,6 +18,7 @@ public interface MarketMapper extends PageMapper<Market, MarketResponse> {
 
     /**
      * Converte o objeto de dominio Market em Response
+     *
      * @param market Market carregado do dominio
      * @return MarketResponse response a ser enviado para o frontend
      */
@@ -27,6 +26,7 @@ public interface MarketMapper extends PageMapper<Market, MarketResponse> {
 
     /**
      * Converte de CreateMarketRequest para CreateMarketDto
+     *
      * @param request Dados recebidos da requisição
      * @return Dto a ser enviado para o dominio
      */
@@ -34,6 +34,7 @@ public interface MarketMapper extends PageMapper<Market, MarketResponse> {
 
     /**
      * Conversao de dados da requisição UpdateMarketRequest para Dto
+     *
      * @param request dados recebidos da requisição
      * @return UpdateMarketDto dados a serem enviado para o dominio
      */

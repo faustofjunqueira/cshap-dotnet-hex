@@ -1,20 +1,20 @@
 package github.faustofjunqueira.spmercantil.application.adapters.repository.entity;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
 @Data
 @Table(name="market")
-public class MarketEntity {
+public class MarketEntity extends PanacheEntityBase {
 
     @Id
-    @GeneratedValue(generator = "uuid4")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "pkId", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
     @Type(type = "uuid-char")
     private UUID pkId;
@@ -120,5 +120,48 @@ public class MarketEntity {
      */
     @Column(name="reference")
     private String reference;
+
+    /**
+     * Campo de auditoria, marca quando houve a ultima atualização
+     */
+    @Column(name = "updatedAt")
+    private LocalDateTime updatedAt;
+
+    /**
+     * Campo de auditoria, marca quando o registro foi criado
+     */
+    @Column(name = "createdAt")
+    private LocalDateTime createdAt;
+
+    /**
+     * Campo de auditoria, marca quando o registro foi deletado, caso o campo seja null, então o registro não esta deletado.
+     */
+    @Column(name = "deletedAt")
+    private LocalDateTime deletedAt;
+
+    /**
+     * Atribuí a data no updatedAt
+     */
+    @PreUpdate
+    private void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    /**
+     * Atribuí a data no createdAt e updatedAt
+     */
+    @PrePersist
+    private void onPersist() {
+        this.updatedAt = this.createdAt = LocalDateTime.now();
+    }
+
+    /**
+     * Busca uma feira por numero de registro
+     * @param register String registro da feira
+     * @return Feira encontrada baseado no registro
+     */
+    public static MarketEntity findByRegister(String register){
+        return find("register", register).firstResult();
+    }
 
 }
