@@ -18,12 +18,3 @@ GRANT UPDATE ON SP_MERCANTIL.* TO 'sp_mercantil_app'@'%';
 
 -- Concedendo permissão ao usuário de consulto
 GRANT SELECT ON SP_MERCANTIL.* TO 'sp_mercantil_sel'@'%';
-
--- KEYCLOAK
-
--- Base de dados do keycloak
-CREATE DATABASE KEYCLOAK;
--- Criando usuário para o keycloak
-CREATE USER 'keycloak_app'@'%' IDENTIFIED BY '8WJlclJ$42mN*QbCED&N51!ZY';
--- Concedendo permissão ao usuário
-GRANT ALL PRIVILEGES ON KEYCLOAK.* TO 'keycloak_app'@'%';
