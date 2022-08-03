@@ -1,9 +1,10 @@
-package github.faustofjunqueira.spmercantil.config;
+package github.faustofjunqueira.spmercantil.application.config;
 
 import github.faustofjunqueira.spmercantil.core.port.MarketCrudService;
 import github.faustofjunqueira.spmercantil.core.repository.MarketRepository;
 import github.faustofjunqueira.spmercantil.core.service.MarketCrudServiceImpl;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
 
@@ -16,6 +17,7 @@ import javax.enterprise.inject.Default;
 public class DepedentsConfig {
 
     @Default
+    @ApplicationScoped
     public MarketCrudService marketCrud(MarketRepository marketRepository) {
         return new MarketCrudServiceImpl(marketRepository);
     }

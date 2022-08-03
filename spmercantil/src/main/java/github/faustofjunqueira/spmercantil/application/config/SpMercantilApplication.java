@@ -1,4 +1,4 @@
-package github.faustofjunqueira.spmercantil.config;
+package github.faustofjunqueira.spmercantil.application.config;
 
 import javax.ws.rs.core.Application;
 
