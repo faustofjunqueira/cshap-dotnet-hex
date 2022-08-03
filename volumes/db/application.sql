@@ -5,7 +5,7 @@
 CREATE DATABASE SP_MERCANTIL;
 
 -- Criando usuário para a aplicação
-CREATE USER 'sp_mercantil_app'@'%' IDENTIFIED BY 'd97e$6y8*5K63VJM7KhT!ySjR$';
+CREATE USER 'sp_mercantil_app'@'%' IDENTIFIED BY 'laNtatEPIlentAtRUCKOdi';
 -- Criando usuário para consultar o banco de dados
 CREATE USER 'sp_mercantil_sel'@'%' IDENTIFIED BY 'UaSHtSUntirEftENUREofuzAR';
 

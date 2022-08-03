@@ -8,8 +8,8 @@ services:
     environment:
       -  MYSQL_ROOT_PASSWORD=my-secret-pw
     volumes:
-      - "./volumes/mysql-data:/var/lib/mysql"
-      - "./db:/docker-entrypoint-initdb.d"
+      - "mysql-data:/var/lib/mysql"
+      - "./volumes/db:/docker-entrypoint-initdb.d"
 
 
   # Solução de acesso à base de dados
@@ -23,3 +23,39 @@ services:
       - 8081:8080
     environment:
       - ADMINER_DESIGN=dracula
+
+  app:
+    image: quarkus/spmercantil
+    build:
+      args:
+        progress: plain
+      context: spmercantil
+      dockerfile: ./src/main/docker/Dockerfile.jvm
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
+    volumes:
+      - "./volumes/artefacts:/artefacts"
+    environment:
+      - DB_USERNAME=sp_mercantil_app
+      - DB_PASSWORD=laNtatEPIlentAtRUCKOdi
+      - DB_URL=jdbc:mysql://db:3306/SP_MERCANTIL
+  
+  import:
+    image: quarkus/import
+    build:
+      context: import-data
+      dockerfile: ./Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - "./volumes/import:/import/data"
+    environment:
+      - DB_HOST=db
+      - DB_USER=sp_mercantil_app
+      - DB_PWD=laNtatEPIlentAtRUCKOdi
+      - DB_DATABASE=SP_MERCANTIL
+
+volumes:
+  mysql-data:
