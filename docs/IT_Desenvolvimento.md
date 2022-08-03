@@ -18,7 +18,7 @@ A aplicação foi construído sobre os pilares do Quarkus.
 cd ./spmercantil
 ``` 
 
-2. Inicie o docker compose para termos acesso ao banco de dados e aos Keycloak
+1. Inicie o docker compose para termos acesso ao banco de dados e Adminer, para acessar o banco de dados.
 
 ```sh
 docker-compose up -d

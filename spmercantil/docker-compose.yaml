@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  # SGBD utilizado pela aplicação e pelo Keycloak
+  # SGBD utilizado pela aplicação
   db:
     image: mysql:8.0.30-debian
     restart: always
