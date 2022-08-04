@@ -1,0 +1,12 @@
+using System;
+
+namespace SpMercantil.Application.Controller.Dto.Response
+{
+    /// <summary>
+    /// Informações da Feira vindas diretamento do dominio
+    /// </summary>
+    class MarketResponse
+    {
+        
+    }
+}
