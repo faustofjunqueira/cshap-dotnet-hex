@@ -1,9 +1,6 @@
-using System;
-
-namespace SpMercantil.Domain.Model 
+namespace SpMercantil.Domain.Model
 {
-    class Market
+    internal class Market
     {
-        
     }
 }

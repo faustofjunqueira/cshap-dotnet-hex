@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 
 namespace Application.Test
@@ -8,7 +7,6 @@ namespace Application.Test
         [Fact]
         public void Test1()
         {
-
         }
     }
 }

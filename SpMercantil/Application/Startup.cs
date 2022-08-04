@@ -1,13 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
+using System.Reflection;
+using Application.Controller.Configuration;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace Application
 {
@@ -19,19 +20,76 @@ namespace Application
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
-        }
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddControllers(
+                options => { options.Filters.Add(new HttpResponseExceptionFilter()); }
+            ).AddNewtonsoftJson();
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            // https://docs.microsoft.com/pt-br/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-6.0&tabs=visual-studio
+            services.AddSwaggerGenNewtonsoftSupport();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Sp Mercantil",
+                    Description = "Servico de gerenciamento de feiras da cidade de Sao Paulo",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Fausto F Junqueira",
+                        Url = new Uri("http://linkedin.com/in/faustofjunqueira")
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "MIT",
+                        Url = new Uri("https://github.com/faustofjunqueira/sp-mercantil-web-api/blob/dev/LICENSE")
+                    }
+                });
+                // using System.Reflection;
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins(Configuration.GetValue<string>("cors:AllowedHosts"));
+                        builder.WithHeaders("*");
+                        builder.WithMethods("*");
+                    });
+            });
+
+            services.AddHealthChecks();
+            services.AddResponseCompression();
+        }
+        
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline. 
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // app.Use((context, next) =>
+            // {
+            //     context.Request.PathBase = Configuration.GetValue<string>("baseUrl");
+            //     return next();
+            // });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SP Mercantil"));
             }
             else
             {
@@ -41,15 +99,15 @@ namespace Application
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
             app.UseRouting();
-
-            app.UseAuthorization();
-
+            app.UseCors();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapHealthChecks("/health", new HealthCheckOptions
+                {
+                    AllowCachingResponses = false
+                });
+                endpoints.MapControllers();
             });
         }
     }
