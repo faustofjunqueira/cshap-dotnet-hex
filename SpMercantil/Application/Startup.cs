@@ -20,9 +20,9 @@ namespace Application
         }
 
         public IConfiguration Configuration { get; }
-        
+
         /// <summary>
-        /// This method gets called by the runtime. Use this method to add services to the container.
+        ///     This method gets called by the runtime. Use this method to add services to the container.
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
@@ -71,9 +71,9 @@ namespace Application
             services.AddHealthChecks();
             services.AddResponseCompression();
         }
-        
+
         /// <summary>
-        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline. 
+        ///     This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
@@ -84,12 +84,11 @@ namespace Application
             //     context.Request.PathBase = Configuration.GetValue<string>("baseUrl");
             //     return next();
             // });
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SP Mercantil"));
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SP Mercantil"));
             }
             else
             {
