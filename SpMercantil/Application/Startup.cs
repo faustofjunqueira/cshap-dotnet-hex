@@ -81,12 +81,12 @@ namespace Application
             services.AddDbContext<ApplicationContext>(options =>
             {
                 var connectionString = Configuration.GetConnectionString("DefaultConnection");
+                Log.Information("Connection String {@ConnectionString}", connectionString);
                 options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 30)));
             });
             services.AddScoped<IUnitOfWork, EfUnitOfWork>();
 
             // Automapper
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddAutoMapper((serviceProvider, automapper) =>
             {
                 automapper.AddCollectionMappers();
