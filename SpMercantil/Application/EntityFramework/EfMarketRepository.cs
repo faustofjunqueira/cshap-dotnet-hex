@@ -7,6 +7,7 @@ using Application.EntityFramework.Entity;
 using AutoMapper;
 using Core.Domain.Dto;
 using Core.Domain.Model;
+using Core.Exceptions;
 using Core.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -58,16 +59,14 @@ namespace Application.EntityFramework
 
         public async Task DeleteAsync(string register)
         {
-            var entity = await _context.Market.SingleAsync(r => r.Register == register);
-            // TODO: implementar not found
+            var entity = await GetByRegisterAsync(register);
             entity.DeletedAt = DateTime.Now;
             await _context.SaveChangesAsync();
         }
 
         public async Task<Market> UpdateAsync(string register, UpdateMarketDto dto)
         {
-            var entity = await _context.Market.SingleAsync(r => r.Register == register);
-            // TODO: implementar not found
+            var entity = await GetByRegisterAsync(register);
             entity.Id = dto.Id;
             entity.Longitude = dto.Longitude;
             entity.Latitude = dto.Latitude;
@@ -122,6 +121,17 @@ namespace Application.EntityFramework
             paging.Data = _mapper.Map<List<Market>>(result);
             paging.Total = total; 
             return paging;
+        }
+
+        public async Task<MarketEntity> GetByRegisterAsync(string register)
+        {
+            var record = await _context.Market.SingleOrDefaultAsync(r => r.Register == register);
+            if (record is null)
+            {
+                throw new RecordNotFoundException(register, "Market");
+            }
+
+            return record;
         }
     }
 }

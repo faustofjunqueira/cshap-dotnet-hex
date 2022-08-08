@@ -92,7 +92,8 @@ namespace Application.Controller.Market
         {
             var createDto = _mapper.Map<CreateMarketDto>(body);
             var market = await _service.CreateAsync(createDto);
-            return Created("market/"+market.Register, market);
+            var response = _mapper.Map<MarketResponse>(market); 
+            return Created("market/"+market.Register, response);
         }
 
         /// <summary>
