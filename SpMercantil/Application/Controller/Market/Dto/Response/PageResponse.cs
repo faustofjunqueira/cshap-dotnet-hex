@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace Application.Controller.Market.Dto.Response
 {
@@ -11,11 +11,11 @@ namespace Application.Controller.Market.Dto.Response
         /// <summary>
         ///     total de registro presentes na base de dados
         /// </summary>
-        private long Total { get; set; }
+        public long Total { get; set; }
 
         /// <summary>
         ///     lista registro da pagina
         /// </summary>
-        private Collection<TData> Data { get; set; }
+        public List<TData> Data { get; set; }
     }
 }

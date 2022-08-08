@@ -2,9 +2,16 @@ using System;
 using System.IO;
 using System.Reflection;
 using Application.Controller.Configuration;
+using Application.EntityFramework;
+using AutoMapper;
+using AutoMapper.EquivalencyExpression;
+using Core.Repository;
+using Core.Service;
+using Core.Service.Port;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,7 +34,6 @@ namespace Application
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers(
                 options => { options.Filters.Add(new HttpResponseExceptionFilter()); }
             ).AddNewtonsoftJson();
@@ -68,8 +74,27 @@ namespace Application
                     });
             });
 
+            // EF
+            services.AddDbContext<ApplicationContext>(options =>
+            {
+                var connectionString = Configuration.GetConnectionString("DefaultConnection");
+                options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 30)));
+            });
+            services.AddScoped<IUnitOfWork, EfUnitOfWork>();
+
+            // Automapper
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddAutoMapper((serviceProvider, automapper) =>
+            {
+                automapper.AddCollectionMappers();
+                automapper.UseEntityFrameworkCoreModel<ApplicationContext>(serviceProvider);
+            }, AppDomain.CurrentDomain.GetAssemblies());
+            
             services.AddHealthChecks();
             services.AddResponseCompression();
+            
+            // Services
+            services.AddScoped<IMarketCrudService, MarketCrudService>();
         }
 
         /// <summary>
