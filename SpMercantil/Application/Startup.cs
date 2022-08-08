@@ -16,6 +16,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Serilog;
+using Serilog.Events;
 
 namespace Application
 {
@@ -34,6 +36,7 @@ namespace Application
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddControllers(
                 options => { options.Filters.Add(new HttpResponseExceptionFilter()); }
             ).AddNewtonsoftJson();
@@ -133,6 +136,8 @@ namespace Application
                 });
                 endpoints.MapControllers();
             });
+
+            app.UseSerilogRequestLogging();
         }
     }
 }

@@ -6,6 +6,7 @@ using Core.Domain.Dto;
 using Core.Service.Port;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Application.Controller.Market
 {
@@ -21,6 +22,7 @@ namespace Application.Controller.Market
 
         private readonly IMarketCrudService _service;
         private readonly IMapper _mapper;
+        private readonly ILogger _logger;
 
         public MarketController(IMarketCrudService service, IMapper mapper)
         {
