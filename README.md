@@ -7,7 +7,6 @@ Para ir diretamente para o material de suporte à avaliação e uso, veja o docu
 
 - [sp-mercantil-web-api](#sp-mercantil-web-api)
   - [Introdução](#introdução)
-    - [Quarkus](#quarkus)
     - [Arquitetura Hexagonal](#arquitetura-hexagonal)
   - [Demostração](#demostração)
   - [Execução](#execução)
@@ -20,13 +19,7 @@ Para ir diretamente para o material de suporte à avaliação e uso, veja o docu
 
 ## Introdução
 
-Esse projeto é para fins acadêmicos e, tem como objetivo, apresenta uma estrutura arquitetura hexagonal utilizando o framework [Quarkus](https://quarkus.io/).
-
-### Quarkus
-
-O Quarkus é, atualmente, a prova que a comunidade Java ainda continua em constante evolução frente às novas necessidades e cenários apresentados pelo mercado.
-
-No site oficial da plataforma, [https://quarkus.io/](https://quarkus.io/), temos uma mostra de como ele é altamente competitivo, quando comparado com outras plataformas.
+Esse projeto é para fins acadêmicos e, tem como objetivo, apresenta uma estrutura arquitetura hexagonal utilizando o framework ASP.NET Core.
 
 ### Arquitetura Hexagonal
 
@@ -51,15 +44,15 @@ A cidade de São Paulo apresenta um grande número de feiras, para tal, é neces
 
 Para executar a aplicação temos dois prismas, um demostração e desenvolvimento. A principal diferença entre eles é o docker-compose, que para desenvolvimento, instancia somente o banco de dados, enquanto para demonstração, irá instanciar o banco, popula-lo, construir a aplicação, verificar a qualidades do código, executar os testes e executar a aplicação, simulando um fluxo de CI/CD.
 
-Para efetuar a execução da aplicação, siga o manual [Executando a Aplicação](./docs/IT_Executando_Aplicacao.md). Agora para seguir a instação para executação de desenvolvimento, então vá para [Desenvolvendo com Java / Quarkus / Docker](./docs/IT_Desenvolvimento.md).
+Para efetuar a execução da aplicação, siga o manual [Executando a Aplicação](./docs/IT_Executando_Aplicacao.md). Agora para seguir a instação para executação de desenvolvimento, então vá para [Desenvolvendo](./docs/IT_Desenvolvimento.md).
 
 
 ## Tecnlogias
 
 As tecnologias adotadas para a execução dessa aplicação foram:
 
-- Java: Para o desenvolvimento da aplicação;
-- Quarkus: Framework de desenvolvimento de aplicações web, orientado à containers;
+- .NET Core: Para o desenvolvimento da aplicação;
+- ASP.NET Core: Framework de desenvolvimento de aplicações web;
 - Docker: Para criação do ambiente de execução;
 - Docker Compose: Para orquestração das aplicações;
 - Node JS: Para desenvolvimento da aplicação de importação.
@@ -71,8 +64,7 @@ Logo:
 
 - **Docker** `>=20.10.8`
 - **Docker Compose**  `1.29.2`
-- **Java** `>=11.0.12` - *Para desenvolvimento*
-- **Maven** `>=3.8.4` - *Para desenvolvimento*
+- **.NET Core** `5.0.11` - *Para desenvolvimento*
 
 ## Banco de dados
 

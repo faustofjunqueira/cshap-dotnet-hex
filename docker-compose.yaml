@@ -25,7 +25,7 @@ services:
       - ADMINER_DESIGN=dracula
 
   app:
-    image: dotnet/spmercantil
+    image: spmercantil/webapi
     build:
       args:
         progress: plain
@@ -40,7 +40,7 @@ services:
       - LOG_PATH="/tmp/SpMercantil/logs.txt"
   
   import:
-    image: quarkus/import
+    image: spmercantil/import
     build:
       context: import-data
       dockerfile: ./Dockerfile

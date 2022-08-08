@@ -1,6 +1,5 @@
 ## 
 # Imagem de build da aplicação
-# docker build -t quarkus/import .
 
 FROM node:18-alpine3.15
 

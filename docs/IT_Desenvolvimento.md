@@ -1,4 +1,4 @@
-# Desenvolvendo com Java / Quarkus / Docker
+# Desenvolvendo 
 
 A aplicação foi construído sobre os pilares do Quarkus.
 
