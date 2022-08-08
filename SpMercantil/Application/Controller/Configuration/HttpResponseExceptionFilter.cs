@@ -13,9 +13,9 @@ namespace Application.Controller.Configuration
 
         public void OnActionExecuted(ActionExecutedContext context)
         {
-            if (context.Exception is RecordNotFoundException exception)
+            if (context.Exception is RecordNotFoundException || context.Exception is RecordAlreadyStoredException)
             {
-                context.Result = new ObjectResult(exception.Message)
+                context.Result = new ObjectResult(context.Exception.Message)
                 {
                     StatusCode = (int)HttpStatusCode.BadRequest
                 };

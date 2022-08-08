@@ -76,13 +76,29 @@ e os dados devem ser validados, conforme a tabela abaixo.
   "street": "RUA CODAJ-S",
   "addrNumber": "45",
   "neighborhood": "VILA FORMOSA",
-  "reference": "PRAÃA  MARECHAL LEIT+O BANDEIRA"
+  "reference": "PRAÃA  MARECHAL"
 }
 ```
 **Então** a requisição deve retornar status code `201` com body
 ```json
 {
+  "id": "1",
+  "longitude": -46.548146,
+  "latitude": -23.56839,
+  "setcens": "355030885000019",
+  "areap": "3550308005040",
+  "coddist": "87",
+  "district": "VILA FORMOSA",
+  "codsubpref": "26",
+  "subpref": "ARICANDUVA",
+  "region5": "Leste",
+  "region8": "Leste 1",
+  "name": "PRAÃA LE+O X",
   "register": "7216-8",
+  "street": "RUA CODAJ-S",
+  "addrNumber": "45",
+  "neighborhood": "VILA FORMOSA",
+  "reference": "PRAÃA  MARECHAL"
 }
 ```
 
@@ -112,18 +128,14 @@ e os dados devem ser validados, conforme a tabela abaixo.
   "street": "RUA CODAJ-S",
   "addrNumber": "45",
   "neighborhood": "VILA FORMOSA",
-  "reference": "PRAÃA  MARECHAL LEIT+O BANDEIRA"
+  "reference": "PRAÃA  MARECHAL"
 }
 ```
 
 **Então** a requisição deve retornar status code `400` com body
 
 ```json
-{
-  "code": "001",
-  "type": "business",
-  "message": "Register already found"
-}
+"Record id=7216-8 already stored. Type=Market"
 ```
 
 ### Cenário III Cliente faz cadastro com informação de tipo do dados diferente do permitido
@@ -135,10 +147,10 @@ e os dados devem ser validados, conforme a tabela abaixo.
 ```json
 {
   "id": "1",
-  "longitude": "-46.548146", // <- Campo com o valor impróprio
+  "longitude": -46.548146,
   "latitude": -23.568390,
   "setcens": "355030885000019",
-  "areap": "3550308005040",
+  "areap": {"lorem":"ipsum"}, // errado
   "coddist": "87",
   "district": "VILA FORMOSA",
   "codsubpref": "26",
@@ -158,9 +170,16 @@ e os dados devem ser validados, conforme a tabela abaixo.
 
 ```json
 {
-  "code": "000",
-  "type": "validation",
-  "message": "long is not double"
+  "errors": {
+    "areap": [
+      "Unexpected character encountered while parsing value: {. Path 'areap', line 6, position 12.",
+      "After parsing a value an unexpected character was encountered: :. Path 'areap', line 6, position 18."
+    ]
+  },
+  "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "traceId": "00-edad45089881be41b2c0772f8c4afa84-8b4cc47d92e6974b-00"
 }
 ```
 
@@ -173,7 +192,7 @@ e os dados devem ser validados, conforme a tabela abaixo.
 ```json
 {
   "id": "1",
-  "longitude": "-46.548146", // <- Campo com o valor impróprio
+  "longitude": -46.548146,
   "latitude": -23.568390,
   "setcens": "355030885000019",
   "areap": "3550308005040",
@@ -187,7 +206,7 @@ e os dados devem ser validados, conforme a tabela abaixo.
   "street": "RUA CODAJ-S",
   "addrNumber": "45",
   "neighborhood": "VILA FORMOSA",
-  "reference": "PRAÃA  MARECHAL LEIT+O BANDEIRA"
+  "reference": "PRAÃA  MARECHAL"
 }
 ```
 
@@ -195,9 +214,15 @@ e os dados devem ser validados, conforme a tabela abaixo.
 
 ```json
 {
-  "code": "000",
-  "type": "validation",
-  "message": "coddist is mandatory"
+  "errors": {
+    "Coddist": [
+      "The Coddist field is required."
+    ]
+  },
+  "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "traceId": "00-510c6b0590f3444793d2c3fb6822ad9e-7a4ef96f64dca74e-00"
 }
 ```
 
@@ -264,7 +289,7 @@ O único campo que não pode ser alterado é o campo de `register`.
   "street": "RUA TESTE 1",
   "addrNumber": "45",
   "neighborhood": "VILA FORMOSA",
-  "reference": "PRAÃA  MARECHAL LEIT+O BANDEIRA"
+  "reference": "PRAÃA  MARECHAL"
 }
 ```
 
@@ -272,13 +297,29 @@ O único campo que não pode ser alterado é o campo de `register`.
 
 **Dado** um cliente autenticado e autorizado com permissão de ALTERAR_FEIRA
 
-**E** feira com registro `7216-8` **NÃO** esta cadastrada no banco de dados
+**E** feira com registro `7216-9` **NÃO** esta cadastrada no banco de dados
 
-**Quando** Enviar para a API `PUT /market/7216-8` com o seguinte body
+**Quando** Enviar para a API `PUT /market/7216-9` com o seguinte body
 
 ```json
 {
-  "street": "RUA TESTE 1"
+  "id": "1",
+  "longitude": -46.548146,
+  "latitude": -23.568390,
+  "setcens": "355030885000019",
+  "areap": "3550308005040",
+  "coddist": "87",
+  "district": "VILA FORMOSA",
+  "codsubpref": "26",
+  "subpref": "ARICANDUVA",
+  "region5": "Leste",
+  "region8": "Leste 1",
+  "name": "PRAÃA LE+O X",
+  "register": "7216-8",
+  "street": "RUA TESTE 1",
+  "addrNumber": "45",
+  "neighborhood": "VILA FORMOSA",
+  "reference": "PRAÃA  MARECHAL"
 }
 ```
 
@@ -292,7 +333,23 @@ O único campo que não pode ser alterado é o campo de `register`.
 
 ```json
 {
-  "longitude": "-46.548146", // <- Campo com o valor impróprio
+  "id": "1",
+  "longitude": -46.548146,
+  "latitude": -23.568390,
+  "setcens": "355030885000019",
+  "areap": {"lorem":"ipsum"},
+  "coddist": "87",
+  "district": "VILA FORMOSA",
+  "codsubpref": "26",
+  "subpref": "ARICANDUVA",
+  "region5": "Leste",
+  "region8": "Leste 1",
+  "name": "PRAÃA LE+O X",
+  "register": "7216-8",
+  "street": "RUA TESTE 1",
+  "addrNumber": "45",
+  "neighborhood": "VILA FORMOSA",
+  "reference": "PRAÃA  MARECHAL"
 }
 ```
 
@@ -300,9 +357,16 @@ O único campo que não pode ser alterado é o campo de `register`.
 
 ```json
 {
-  "code": "000",
-  "type": "validation",
-  "message": "long is not double"
+  "errors": {
+    "areap": [
+      "Unexpected character encountered while parsing value: {. Path 'areap', line 6, position 12.",
+      "After parsing a value an unexpected character was encountered: :. Path 'areap', line 6, position 19."
+    ]
+  },
+  "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+  "title": "One or more validation errors occurred.",
+  "status": 400,
+  "traceId": "00-08a85ab8b5d8c747808ac272ed230645-99d85174c2da5d41-00"
 }
 ```
 
@@ -314,7 +378,23 @@ O único campo que não pode ser alterado é o campo de `register`.
 
 ```json
 {
-  "register": "7216-8"
+  "id": "1",
+  "longitude": -46.548146,
+  "latitude": -23.568390,
+  "setcens": "355030885000019",
+  "areap": "3550308005040",
+  "coddist": "87",
+  "district": "VILA FORMOSA",
+  "codsubpref": "26",
+  "subpref": "ARICANDUVA",
+  "region5": "Leste",
+  "region8": "Leste 1",
+  "name": "PRAÃA LE+O X",
+  "register": "7216-8",
+  "street": "RUA TESTE 1",
+  "addrNumber": "45",
+  "neighborhood": "VILA FORMOSA",
+  "reference": "PRAÃA  MARECHAL"
 }
 ```
 
@@ -363,13 +443,31 @@ A Api deve retornar o resultado em formato paginado, com no máximo 10 elementos
 
 **Quando** envia para a API `GET /market`
 
-**Então** a requisição deve retornar status code `400` com o seguinte body
+**Então** a requisição deve retornar status code `200` avaliando todos os registros da base
 
 ```json
 {
-  "code": "002",
-  "type": "validation",
-  "message": "No filter fields"
+    "total": 25,
+    "data": [ {
+        "id": "1",
+        "longitude": -46.548146,
+        "latitude": -23.568390,
+        "setcens": "355030885000019",
+        "areap": "3550308005040",
+        "district": "VILA FORMOSA",
+        "codsubpref": "26",
+        "subpref": "ARICANDUVA",
+        "region5": "Leste",
+        "region8": "Leste 1",
+        "name": "PRAÃA LE+O X",
+        "register": "7216-8",
+        "street": "RUA CODAJ-S",
+        "addrNumber": "45",
+        "neighborhood": "VILA FORMOSA",
+        "reference": "PRAÃA  MARECHAL LEIT+O BANDEIRA"
+        }
+        ...
+    ]
 }
 ```
 
@@ -384,7 +482,6 @@ A Api deve retornar o resultado em formato paginado, com no máximo 10 elementos
 ```json
 {
     "total": 25,
-    "nextPage": "/market?neighborhood=VILA FORMOSA&offset=10&size=10",
     "data": [ {
         "id": "1",
         "longitude": -46.548146,

@@ -52,6 +52,13 @@ namespace Application.EntityFramework
             entity.UpdatedAt = DateTime.Now;
             entity.CreatedAt = DateTime.Now;
 
+            var saved = await _context.Market.IgnoreQueryFilters().SingleOrDefaultAsync(p =>
+                (p.Register == dto.Register || p.Id == dto.Id) && p.DeletedAt == null);
+            if (saved != null)
+            {
+                throw new RecordAlreadyStoredException(dto.Register, "Market");
+            }
+
             await _context.Market.AddAsync(entity);
             await _context.SaveChangesAsync();
             return _mapper.Map<Market>(entity);
@@ -112,14 +119,14 @@ namespace Application.EntityFramework
             {
                 query = query.Where(x => x.Neighborhood.ToLower().Contains(filter.Neighborhood.ToLowerInvariant()));
             }
-            
+
             var total = await query.CountAsync();
             var result = await query.OrderBy(x => x.Register).Skip(skip).Take(filter.Size)
                 .ToListAsync();
 
             var paging = new Page<Market>();
             paging.Data = _mapper.Map<List<Market>>(result);
-            paging.Total = total; 
+            paging.Total = total;
             return paging;
         }
 

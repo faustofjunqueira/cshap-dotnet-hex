@@ -173,8 +173,8 @@ namespace Test.Controller
                 .Throws(new RecordNotFoundException(register, "Market"));
 
             var controller = new MarketController(service.Object, _mapper);
-
-            await Assert.ThrowsAsync<RecordNotFoundException>(() => controller.DeleteAsync(register));
+            var actionResult = await controller.DeleteAsync(register);
+            Assert.IsType<NotFoundResult>(actionResult);
         }
     }
 }

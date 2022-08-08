@@ -1,8 +1,10 @@
+using System;
 using System.Threading.Tasks;
 using Application.Controller.Market.Dto.Request;
 using Application.Controller.Market.Dto.Response;
 using AutoMapper;
 using Core.Domain.Dto;
+using Core.Exceptions;
 using Core.Service.Port;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -133,10 +135,17 @@ namespace Application.Controller.Market
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateAsync([FromRoute] string register, [FromBody] UpdateMarketRequest body)
         {
-            var updateDto = _mapper.Map<UpdateMarketDto>(body);
-            var market = await _service.UpdateAsync(register, updateDto);
-            var response = _mapper.Map<MarketResponse>(market); 
-            return Ok(response);
+            try
+            {
+                var updateDto = _mapper.Map<UpdateMarketDto>(body);
+                var market = await _service.UpdateAsync(register, updateDto);
+                var response = _mapper.Map<MarketResponse>(market); 
+                return Ok(response);
+            }
+            catch (RecordNotFoundException)
+            {
+                return NotFound();
+            }
         }
 
         /// <summary>
@@ -153,8 +162,15 @@ namespace Application.Controller.Market
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteAsync([FromRoute] string register)
         {
-            await _service.DeleteAsync(register);
-            return NoContent();
+            try
+            {
+                await _service.DeleteAsync(register);
+                return NoContent();
+            }
+            catch (RecordNotFoundException)
+            {
+                return NotFound();
+            }
         }
     }
 }
