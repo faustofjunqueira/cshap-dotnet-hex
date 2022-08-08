@@ -6,15 +6,14 @@ A aplicação foi construído sobre os pilares do Quarkus.
 
 - **Docker** `>=20.10.8`
 - **Docker Compose**  `1.29.2`
-- **Java** `>=11.0.12` - *Para desenvolvimento*
-- **Maven** `>=3.8.4` - *Para desenvolvimento*
-
+- **.NET Core** `5.0.11` - *Para desenvolvimento*
+- 
 ## Estrutura de pastas do projeto
 
 ```txt
 ./docs            - Documentação do sofware
 ./import-data     - Aplicação de importação
-./spmercantil     - Aplicação Web
+./SpMercantil     - Aplicação Web
 ./volumes         - Volumes criado pelo docker compose
 /.volumes/db      - Arquivos de inicialização do banco de dados
 /.volumes/import  - Arquivos CSV que serão importados para a base
@@ -26,7 +25,7 @@ A aplicação foi construído sobre os pilares do Quarkus.
 1. Vá para o diretório de desenvolvimento
 
 ```sh
-cd ./spmercantil
+cd ./SpMercantil
 ``` 
 
 1. Inicie o docker compose para termos acesso ao banco de dados e Adminer, para acessar o banco de dados.
@@ -38,15 +37,15 @@ docker-compose up -d
 3. Para executar os testes da aplicação, invoque o maven
 
 ```sh
-mvn test
+cd Test
+dotnet test
 ```
-
-No diretório `./target/jacoco-report` terá o report da cobertura de testes da aplicação
 
 4. Para executar a aplicação, em desenvolvimento, faça
 
 ```sh
-mvn quarkus:dev
+cd Application
+dotnet run
 ```
 
-Pronto, ao finalizar a inicialização, abra o browser e vá para `http://localhost:8080`
+Pronto, ao finalizar a inicialização, abra o browser e vá para `https://localhost:5001/swagger`
